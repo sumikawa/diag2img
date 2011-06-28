@@ -35,5 +35,5 @@ def json(request):
         diagram = re.sub("&gt;",">",diagram);
         diagram = re.sub("<br>", "\n", diagram);
         encode = base64.b64encode(bz2.compress(diagram));
-    return HttpResponseRedirect(reverse('mysite.img.views.edit', args=(encode,)))
+    return HttpResponseRedirect(reverse('mysite.nw.views.edit', args=(encode,)))
 #    return HttpResponse(request.POST['myvalue'], mimetype='text/html')
