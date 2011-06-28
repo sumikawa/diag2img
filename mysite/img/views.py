@@ -2,6 +2,7 @@ import os
 import re
 import sys
 import base64
+import bz2
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -12,7 +13,7 @@ from nwdiag import diagparser, builder, DiagramDraw
 
 @cache_page(60 * 15)
 def show(request, diag):
-    tree = diagparser.parse(diagparser.tokenize(base64.b64decode(diag)))
+    tree = diagparser.parse(diagparser.tokenize(bz2.decompress(base64.b64decode(diag))))
     diagram = builder.ScreenNodeBuilder.build(tree)
     response = HttpResponse(mimetype='image/png')
 
@@ -23,7 +24,7 @@ def show(request, diag):
     return response
 
 def edit(request, diag):
-    plain = base64.b64decode(diag);
+    plain = bz2.decompress(base64.b64decode(diag));
     return render_to_response('diag/edit.html', {'diag': diag, 'plain': plain})
 
 def json(request):
@@ -33,6 +34,6 @@ def json(request):
         diagram = re.sub("&lt;","<",diagram);
         diagram = re.sub("&gt;",">",diagram);
         diagram = re.sub("<br>", "\n", diagram);
-        encode = base64.b64encode(diagram);
+        encode = base64.b64encode(bz2.compress(diagram));
     return HttpResponseRedirect(reverse('mysite.img.views.edit', args=(encode,)))
 #    return HttpResponse(request.POST['myvalue'], mimetype='text/html')
