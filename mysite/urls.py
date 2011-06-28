@@ -5,9 +5,10 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^polls/', include('mysite.polls.urls')),
+    (r'^json/', include('mysite.img.urls')),
     (r'^img/', include('mysite.img.urls')),
 
+    (r'^js/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/usr/local/src/diag2img/mysite/js'}),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

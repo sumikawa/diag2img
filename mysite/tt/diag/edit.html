@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=us-ascii" />
-<script type="text/javascript" src="http://www.google.com/jsapi"></script>
-<script type="text/javascript">google.load("jquery", "1.4");</script>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/autoresize.jquery.min.js"></script>
 <script type="text/javascript" src="/js/blockdiag.js"></script>
 <title>nwdiag2img</title>
 </head>
@@ -10,7 +10,16 @@
 
 <textarea id="diagram" cols="120" rows="10" style="font-family: monospace;">
 {{ plain }}
-</textarea><br />
+</textarea>
+
+<br />
+
+<form id="json" method="post" action="/img/json/" onsubmit="return genURL()">
+  <input id="jsonid" type="hidden" name="myvalue"></input>
+  <input type="submit" value="regenenerate">
+</form>
+
+<br />
 
 permalink of the image is <a href="/img/{{ diag }}.png">here</a>
 
