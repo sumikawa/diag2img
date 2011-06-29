@@ -35,6 +35,7 @@ def edit(request, diag):
 def json(request):
     if request.method == 'POST':
         diagram = request.POST['myvalue'];
+        diagram = re.sub("^(<br>)+", "", diagram);
         diagram = re.sub("(<br>)+$", "", diagram);
         diagram = re.sub("&lt;","<",diagram);
         diagram = re.sub("&gt;",">",diagram);
