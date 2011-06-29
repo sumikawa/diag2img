@@ -3,6 +3,7 @@ import re
 import sys
 import base64
 import bz2
+from django.conf import settings
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -27,7 +28,7 @@ def show(request, diag):
 
 def edit(request, diag):
     if diag == '':
-	return HttpResponseRedirect(reverse('nw.views.edit', args=(default_page,)))
+	return HttpResponseRedirect(reverse(settings.SITE_ROOT + 'nw.views.edit', args=(default_page,)))
     plain = bz2.decompress(base64.b64decode(diag));
     return render_to_response('diag/edit.html', {'diag': diag, 'plain': plain})
 
@@ -39,5 +40,5 @@ def json(request):
         diagram = re.sub("&gt;",">",diagram);
         diagram = re.sub("<br>", "\n", diagram);
         encode = base64.b64encode(bz2.compress(diagram));
-    return HttpResponseRedirect(reverse('nw.views.edit', args=(encode,)))
+    return HttpResponseRedirect(reverse(settings.SITE_ROOT + 'nw.views.edit', args=(encode,)))
 #    return HttpResponse(request.POST['myvalue'], mimetype='text/html')
