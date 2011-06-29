@@ -3,13 +3,14 @@ import re
 import socket
 
 if re.match('diag2img-\w+-www-\d+', socket.gethostname()):
-    DEBUG = True
-    TEMPLATE_DEBUG = DEBUG
+# dotcloud
+    DEBUG = False
     SITE_ROOT = ''
 else:
     DEBUG = True
-    TEMPLATE_DEBUG = DEBUG
     SITE_ROOT = 'mysite.'
+
+TEMPLATE_DEBUG = DEBUG
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
