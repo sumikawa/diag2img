@@ -4,12 +4,12 @@ import socket
 if socket.gethostname() == 'diag2img.www':
     DEBUG = True
     TEMPLATE_DEBUG = DEBUG
-    ROOT = 'mysite.'
+    SITE_ROOT = 'mysite.'
 
 else:
     DEBUG = True
     TEMPLATE_DEBUG = DEBUG
-    ROOT = ''
+    SITE_ROOT = ''
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -29,7 +29,7 @@ DATABASES = {
         }
     }
 
-ROOT_URLCONF = ROOT + 'urls'
+ROOT_URLCONF = SITE_ROOT + 'urls'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -67,7 +67,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = os.path.join(BASE_DIR, 'static'),
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -125,7 +125,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    ROOT + 'nw',
+    SITE_ROOT + 'nw',
 )
 
 # A sample logging configuration. The only tangible logging
