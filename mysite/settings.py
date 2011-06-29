@@ -15,7 +15,7 @@ TEMPLATE_DEBUG = DEBUG
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 ADMINS = (
-    ('sumikawa', 'sumikawa@sumikawa.jp'),
+#    ('sumikawa', 'sumikawa@sumikawa.jp'),
 )
 MANAGERS = ADMINS
 
