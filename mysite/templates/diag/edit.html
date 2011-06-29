@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h2>Source</h2>
+<h2>Diagram Source</h2>
 
 <textarea id="diagram" cols="120" rows="10" style="font-family: monospace;">
 {{ plain }}
@@ -18,12 +18,12 @@
 
 <form id="json" method="post" action="/nw/json/" onsubmit="return genURL()">
   <input id="jsonid" type="hidden" name="myvalue"></input>
-  <input type="submit" value="regenenerate">
+  <input type="submit" value="Regenenerate image">
 </form>
 
 <h2>Image</h2>
 
-permalink of the image is <a href="/nw/{{ diag }}.png">here</a>
+Permalink of the image is <a href="/nw/{{ diag }}.png">here</a>
 
 <p>
 
@@ -31,10 +31,11 @@ permalink of the image is <a href="/nw/{{ diag }}.png">here</a>
 
 </p>
 
-<h2>Disclaimer</h2>
+<h2>Site description</h2>
 
 <ul>
-<li> Any images are dynamically generated and not stored in the server except of memory cache
+<li> This site is inspired by <a href="http://interactive.blockdiag.com/nwdiag/">Interactive shell for *diag</a> and aimed to generate permalink of the PNG image of a diagram, which can be put on wiki page and web presentation directly
+<li> Any images are not stored in the server except of memory cache
 <li> The source code is available at <a href="https://github.com/sumikawa/diag2img">github</a>
 </ul>
 
