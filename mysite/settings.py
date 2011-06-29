@@ -1,10 +1,35 @@
-# Django settings for mysite project.
+import os
+import socket
+
+if socket.gethostname() == 'diag2img.www':
+    DEBUG = True
+    TEMPLATE_DEBUG = DEBUG
+    SITE_ROOT = 'mysite.'
+
+else:
+    DEBUG = True
+    TEMPLATE_DEBUG = DEBUG
+    SITE_ROOT = ''
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 ADMINS = (
-#    ('sumikawa', 'sumikawa@sumikawa.jp'),
+    ('sumikawa', 'sumikawa@sumikawa.jp'),
 )
-
 MANAGERS = ADMINS
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'test.db'),
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
+        }
+    }
+
+ROOT_URLCONF = SITE_ROOT + 'urls'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -42,7 +67,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = os.path.join(BASE_DIR, 'static'),
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -78,6 +103,10 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'templates'),
+    )
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -96,7 +125,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'nw',
+    SITE_ROOT + 'nw',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -123,40 +152,3 @@ LOGGING = {
 }
 
 CACHE_BACKEND = 'locmem:///'
-
-import socket
-if socket.gethostname() == 'diag2img.www':
-    DEBUG = True
-    TEMPLATE_DEBUG = DEBUG
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': '/usr/local/src/test/test.db',
-            'USER': '',
-            'PASSWORD': '',
-            'HOST': '',
-            'PORT': '',
-            }
-        }
-    ROOT_URLCONF = 'mysite.urls'
-    TEMPLATE_DIRS = (
-        '/usr/local/src/diag2img/mysite/templates',
-        )
-
-else:
-    DEBUG = True
-    TEMPLATE_DEBUG = DEBUG
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': '/home/dotcloud/test.db',
-            'USER': '',
-            'PASSWORD': '',
-            'HOST': '',
-            'PORT': '',
-            }
-        }
-    ROOT_URLCONF = 'urls'
-    TEMPLATE_DIRS = (
-        '/home/dotcloud/current/templates',
-        )
