@@ -10,5 +10,7 @@ logs::
 ssh::
 	dotcloud ssh diag2img.www
 
+restart::
+	dotcloud restart diag2img.www
 run::
 	(cd mysite; ./manage.py runserver)
