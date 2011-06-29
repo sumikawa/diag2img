@@ -1,7 +1,8 @@
 import os
+import re
 import socket
 
-if socket.gethostname() == 'diag2img-www':
+if re.match('diag2img-\w+-www-\d+', socket.gethostname()):
     DEBUG = True
     TEMPLATE_DEBUG = DEBUG
     SITE_ROOT = ''
