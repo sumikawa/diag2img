@@ -1,10 +1,10 @@
+import os
 from django.conf.urls.defaults import patterns, include, url
 from django.conf import settings
-import os
 
 urlpatterns = patterns('',
-    (r'^json/', include('mysite.nw.urls')),
-    (r'^nw/', include('mysite.nw.urls')),
+    (r'^json/', include(settings.SITE_ROOT + 'nw.urls')),
+    (r'^nw/', include(settings.SITE_ROOT + 'nw.urls')),
 )
 
 if settings.DEBUG:

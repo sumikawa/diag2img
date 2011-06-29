@@ -4,12 +4,12 @@ import socket
 if socket.gethostname() == 'diag2img.www':
     DEBUG = True
     TEMPLATE_DEBUG = DEBUG
-    SITE_ROOT = 'mysite.'
+    SITE_ROOT = ''
 
 else:
     DEBUG = True
     TEMPLATE_DEBUG = DEBUG
-    SITE_ROOT = ''
+    SITE_ROOT = 'mysite.'
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
