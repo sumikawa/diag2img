@@ -1,11 +1,10 @@
 import os
 import socket
 
-if socket.gethostname() == 'diag2img.www':
+if socket.gethostname() == 'diag2img-www':
     DEBUG = True
     TEMPLATE_DEBUG = DEBUG
     SITE_ROOT = ''
-
 else:
     DEBUG = True
     TEMPLATE_DEBUG = DEBUG
