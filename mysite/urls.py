@@ -9,8 +9,8 @@ urlpatterns = patterns('',
 
 if settings.DEBUG:
     urlpatterns += patterns('',
-        (r'^static/js/(?P<path>.*)$', 'django.views.static.serve',
-         {'document_root': os.path.join(settings.STATIC_ROOT, 'js'), 'show_indexes': True,}),
-        (r'^static/(?P<path>.*)$', 'django.views.static.serve',
-         {'document_root': settings.STATIC_ROOT, 'show_indexes': True,}),
+        (r'^js/(?P<path>.*)$', 'django.views.static.serve',
+         {'document_root': os.path.join(settings.STATIC_ROOT, 'js'), }),
+        (r'^css/(?P<path>.*)$', 'django.views.static.serve',
+         {'document_root': os.path.join(settings.STATIC_ROOT, 'css'), }),
     )
