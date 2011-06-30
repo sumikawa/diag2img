@@ -23,13 +23,10 @@
 
 <h2>Diagram Source</h2>
 
-<textarea id="diagram" cols="120" rows="10" style="font-family: monospace;">
-{{ plain }}
-</textarea>
-
-<br />
-
 <form id="json" method="post" action="/{{ type }}/" onsubmit="return genURL()">
+  <textarea id="diagram" cols="120" rows="10" style="font-family: monospace;">
+{{ plain }}
+  </textarea>
   <input id="jsonid" type="hidden" name="myvalue" />
   <input type="submit" value="Regenenerate image" />
 </form>
