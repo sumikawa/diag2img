@@ -7,6 +7,6 @@ function genURL() {
     $('form#json').submit();
 };
 
-$(document).ready(function($){
+$(document).ready(function($) {
     $('textarea').autoResizeTextAreaQ({"max_rows":40});
 });
