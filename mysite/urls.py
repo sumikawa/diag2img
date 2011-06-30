@@ -1,9 +1,10 @@
 import os
 from django.conf.urls.defaults import patterns, include, url
 from django.conf import settings
+from django.views.generic.simple import redirect_to
 
 urlpatterns = patterns('',
-    (r'^json/', include(settings.SITE_ROOT + 'nw.urls')),
+    ('^$', redirect_to, {'url': '/nw/'}),
     (r'^nw/', include(settings.SITE_ROOT + 'nw.urls')),
 )
 
