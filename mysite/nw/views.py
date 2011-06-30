@@ -27,12 +27,6 @@ def show(request, diag):
     return response
 
 def edit(request, diag):
-    if diag == '':
-	return HttpResponseRedirect(reverse(settings.SITE_ROOT + 'nw.views.edit', args=(default_page,)))
-    plain = bz2.decompress(base64.b64decode(diag));
-    return render_to_response('diag/edit.html', {'diag': diag, 'plain': plain})
-
-def json(request):
     if request.method == 'POST':
         diagram = request.POST['myvalue'];
         diagram = re.sub("^(<br>)+", "", diagram);
@@ -41,5 +35,10 @@ def json(request):
         diagram = re.sub("&gt;",">",diagram);
         diagram = re.sub("<br>", "\n", diagram);
         encode = base64.b64encode(bz2.compress(diagram));
-    return HttpResponseRedirect(reverse(settings.SITE_ROOT + 'nw.views.edit', args=(encode,)))
-#    return HttpResponse(request.POST['myvalue'], mimetype='text/html')
+        return HttpResponseRedirect(reverse(settings.SITE_ROOT + 'nw.views.edit', args=(encode,)))
+#       return HttpResponse(request.POST['myvalue'], mimetype='text/html')
+    elif request.method == 'GET':
+        if diag == '':
+            return HttpResponseRedirect(reverse(settings.SITE_ROOT + 'nw.views.edit', args=(default_page,)))
+        plain = bz2.decompress(base64.b64decode(diag));
+        return render_to_response('diag/edit.html', {'diag': diag, 'plain': plain})
