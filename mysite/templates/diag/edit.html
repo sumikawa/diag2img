@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=us-ascii" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="http://static.jquery.com/ui/css/base2.css" type="text/css" media="all" />
 <link rel="stylesheet" href="http://jquery-ui.googlecode.com/svn/tags/latest/themes/base/jquery-ui.css" type="text/css" media="all" />
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
@@ -8,11 +8,11 @@
 <script type="text/javascript">google.load("jqueryui", "1.8");</script>
 <script type="text/javascript" src="/js/jquery.autoResizeTextAreaQ-0.1.js"></script>
 <script type="text/javascript" src="/js/blockdiag.js"></script>
-<title>nwdiag2img</title>
+<title>{{ type }}diag2img</title>
 </head>
 <body bgcolor="#ffffff" text="#000000" link="#000000" vlink="#000000" alink="#000000">
 
-<h1><font color="#ffffff">diag2img</font></h1>
+<h1><font color="#ffffff">{{ type }}diag2img</font></h1>
 
 <div id="jqtab">
   <ul>
@@ -30,20 +30,30 @@
 
 <br />
 
-<form id="json" method="post" action="/nw/json/" onsubmit="return genURL()">
-  <input id="jsonid" type="hidden" name="myvalue"></input>
-  <input type="submit" value="Regenenerate image">
+<form id="json" method="post" action="/{{ type }}/" onsubmit="return genURL()">
+  <input id="jsonid" type="hidden" name="myvalue" />
+  <input type="submit" value="Regenenerate image" />
 </form>
+
+<hr>
 
 <h2>Image</h2>
 
-Permalink of the image is <a href="/nw/{{ diag }}.png">here</a>
+Permalink of the image is <a href="/{{ type }}/{{ diag }}.png">here</a>
 
 <p>
 
-<img src="/nw/{{ diag }}.png"></a>
+<img src="/{{ type }}/{{ diag }}.png" alt="diagram image" />
 
 </p>
+
+<hr>
+
+other services:
+<a href="/block">blockdiag</a> /
+<a href="/seq">seqdiag</a> /
+<a href="/act">actdiag</a> /
+<a href="/nw">nwdiag</a>
 
 </div>
 
@@ -52,10 +62,25 @@ Permalink of the image is <a href="/nw/{{ diag }}.png">here</a>
 <h2>Site description</h2>
 
 <ul>
-<li> This site is inspired by <a href="http://interactive.blockdiag.com/nwdiag/">Interactive shell for *diag</a> and aimed to generate permalink of the PNG image of a diagram, which can be put on wiki page and web presentation directly
+<li> This site is inspired by <a href="http://interactive.blockdiag.com/">Interactive shell for blockdiag</a> and aimed to generate permalink of the PNG image of a diagram, which can be put on wiki page and web presentation directly just by using &lt;img src=""&gt; tag
 <li> Any images are not stored in the server except of memory cache
 <li> The source code is available at <a href="https://github.com/sumikawa/diag2img">github</a>
+<li> Special thanks to @tkomiya who developed great softwares
 </ul>
+
+<h2>URL scheme</h2>
+
+Editing URL: http://diag2img.don.to/TYPE/DIAG <br />
+Image URL: http://diag2img.don.to/TYPE/DIAG.png <br />
+
+<ul>
+<li> TYPE means type of *diag such as 'block', 'nw' for example
+<li> DIAG generates from the diagram source. It is base64 encoded after compressed by bzip2
+</ul>
+
+<hr>
+
+<div id="name">SUMIKAWA Munechika / Daydreamers On the Net</div>
 
 </div>
 
@@ -65,7 +90,7 @@ Permalink of the image is <a href="/nw/{{ diag }}.png">here</a>
   $(function() {
 	$("#jqtab").tabs();
   });
-  </script>
+</script>
 
 </body>
 </html>

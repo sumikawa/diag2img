@@ -10,9 +10,9 @@ from django.core.urlresolvers import reverse
 from django.core.context_processors import csrf
 from django.views.decorators.cache import cache_page
 from ConfigParser import SafeConfigParser
-from nwdiag import diagparser, builder, DiagramDraw
+from actdiag import diagparser, builder, DiagramDraw
 
-default_page = "QlpoOTFBWSZTWZtqPoAAAD9ZgEAQQABwCDavnJogAFQlTTSMaQNBmoNpKADR6gGkBefJp1hOwQrgW6hTWFQlmgUo2PqeEk6KuD6iLk9nFT6ZkZmdRQsPUwhj8XckU4UJCbaj6AA="
+default_page = "QlpoOTFBWSZTWWnBhfsAACZdgEAQQAIACT4AIgUACiAASEijSPQagEqaGgB6SxHqj644FdKc63jZLbdjwYqMTM0HVNskiCZAwmF8XckU4UJBpwYX7A=="
 
 @cache_page(60 * 15)
 def show(request, diag):
@@ -35,10 +35,10 @@ def edit(request, diag):
         diagram = re.sub("&gt;",">",diagram);
         diagram = re.sub("<br>", "\n", diagram);
         encode = base64.b64encode(bz2.compress(diagram));
-        return HttpResponseRedirect(reverse(settings.SITE_ROOT + 'nw.views.edit', args=(encode,)))
+        return HttpResponseRedirect(reverse(settings.SITE_ROOT + 'act.views.edit', args=(encode,)))
 #       return HttpResponse(request.POST['myvalue'], mimetype='text/html')
     elif request.method == 'GET':
         if diag == '':
-            return HttpResponseRedirect(reverse(settings.SITE_ROOT + 'nw.views.edit', args=(default_page,)))
+            return HttpResponseRedirect(reverse(settings.SITE_ROOT + 'act.views.edit', args=(default_page,)))
         plain = bz2.decompress(base64.b64decode(diag));
-        return render_to_response('diag/edit.html', {'diag': diag, 'plain': plain, 'type': 'nw'})
+        return render_to_response('diag/edit.html', {'diag': diag, 'plain': plain, 'type': 'act'})

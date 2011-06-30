@@ -126,6 +126,9 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    SITE_ROOT + 'act',
+    SITE_ROOT + 'block',
+    SITE_ROOT + 'seq',
     SITE_ROOT + 'nw',
 )
 
