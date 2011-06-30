@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=us-ascii" />
-<script type="text/javascript" src="/js/jquery.min.js"></script>
+<link rel="stylesheet" href="http://static.jquery.com/ui/css/base2.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://jquery-ui.googlecode.com/svn/tags/latest/themes/base/jquery-ui.css" type="text/css" media="all" />
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">google.load("jquery", "1.5");</script>
+<script type="text/javascript">google.load("jqueryui", "1.8");</script>
 <script type="text/javascript" src="/js/jquery.autoResizeTextAreaQ-0.1.js"></script>
 <script type="text/javascript" src="/js/blockdiag.js"></script>
 <title>nwdiag2img</title>
 </head>
-<body>
+<body bgcolor="#ffffff" text="#000000" link="#000000" vlink="#000000" alink="#000000">
+
+<h1><font color="#ffffff">diag2img</font></h1>
+
+<div id="jqtab">
+  <ul>
+    <li><a href="#diagram"><span>Diagram</span></a></li>
+    <li><a href="#descr"><span>Description</span></a></li>
+  </ul>
+
+<div id="diagram">
 
 <h2>Diagram Source</h2>
 
@@ -31,6 +45,10 @@ Permalink of the image is <a href="/nw/{{ diag }}.png">here</a>
 
 </p>
 
+</div>
+
+<div id="descr">
+
 <h2>Site description</h2>
 
 <ul>
@@ -38,6 +56,16 @@ Permalink of the image is <a href="/nw/{{ diag }}.png">here</a>
 <li> Any images are not stored in the server except of memory cache
 <li> The source code is available at <a href="https://github.com/sumikawa/diag2img">github</a>
 </ul>
+
+</div>
+
+</div>
+
+<script type="text/javascript">
+  $(function() {
+	$("#jqtab").tabs();
+  });
+  </script>
 
 </body>
 </html>
