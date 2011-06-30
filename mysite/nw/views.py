@@ -41,4 +41,4 @@ def edit(request, diag):
         if diag == '':
             return HttpResponseRedirect(reverse(settings.SITE_ROOT + 'nw.views.edit', args=(default_page,)))
         plain = bz2.decompress(base64.b64decode(diag));
-        return render_to_response('diag/edit.html', {'diag': diag, 'plain': plain})
+        return render_to_response('diag/edit.html', {'diag': diag, 'plain': plain, 'type': 'nw'})
