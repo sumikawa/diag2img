@@ -4,8 +4,9 @@ from django.conf import settings
 from django.views.generic.simple import redirect_to
 
 urlpatterns = patterns('',
-    ('^$', redirect_to, {'url': '/nw/'}),
+    ('^$', redirect_to, {'url': '/block/'}),
     (r'^nw/', include(settings.SITE_ROOT + 'nw.urls')),
+    (r'^block/', include(settings.SITE_ROOT + 'block.urls')),
 )
 
 if settings.DEBUG:

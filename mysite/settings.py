@@ -127,6 +127,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     SITE_ROOT + 'nw',
+    SITE_ROOT + 'block',
 )
 
 # A sample logging configuration. The only tangible logging
