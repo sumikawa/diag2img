@@ -4,5 +4,3 @@ blockdiag
 nwdiag
 seqdiag
 actdiag
-graphviz
-
