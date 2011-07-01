@@ -1,0 +1,4 @@
+- Better fonts (CJK support?)
+- Show "Now Loading" Icon during waiting for generating an image
+
+
