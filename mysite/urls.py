@@ -17,4 +17,6 @@ if settings.DEBUG:
          {'document_root': os.path.join(settings.STATIC_ROOT, 'js'), }),
         (r'^css/(?P<path>.*)$', 'django.views.static.serve',
          {'document_root': os.path.join(settings.STATIC_ROOT, 'css'), }),
+        (r'^img/(?P<path>.*)$', 'django.views.static.serve',
+         {'document_root': os.path.join(settings.STATIC_ROOT, 'img'), }),
     )
