@@ -9,6 +9,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.core.context_processors import csrf
 from django.views.decorators.cache import cache_page
+from django.utils import simplejson
+from django.views.decorators.csrf import csrf_exempt
 from ConfigParser import SafeConfigParser
 from seqdiag import diagparser, builder, DiagramDraw
 
@@ -26,17 +28,12 @@ def show(request, diag):
 
     return response
 
+@csrf_exempt
 def edit(request, diag):
     if request.method == 'POST':
-        diagram = request.POST['myvalue'];
-        diagram = re.sub("^(<br>)+", "", diagram);
-        diagram = re.sub("(<br>)+$", "", diagram);
-        diagram = re.sub("&lt;","<",diagram);
-        diagram = re.sub("&gt;",">",diagram);
-        diagram = re.sub("<br>", "\n", diagram);
-        encode = base64.b64encode(bz2.compress(diagram));
-        return HttpResponseRedirect(reverse(settings.SITE_ROOT + 'seq.views.edit', args=(encode,)))
-#       return HttpResponse(request.POST['myvalue'], mimetype='text/html')
+        encode = base64.b64encode(bz2.compress(request.POST['diagram']))
+        data = simplejson.dumps([{"encode": encode},])
+        return HttpResponse(data, mimetype='application/json')
     elif request.method == 'GET':
         if diag == '':
             return HttpResponseRedirect(reverse(settings.SITE_ROOT + 'seq.views.edit', args=(default_page,)))
