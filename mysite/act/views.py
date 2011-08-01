@@ -22,7 +22,7 @@ def show(request, diag):
     diagram = builder.ScreenNodeBuilder.build(tree)
     response = HttpResponse(mimetype='image/png')
 
-    draw = DiagramDraw.DiagramDraw('PNG', diagram, response, antialias=False)
+    draw = DiagramDraw.DiagramDraw('PNG', diagram, response, antialias=False, font=settings.FONT)
     draw.draw()
     draw.save()
 
@@ -38,4 +38,4 @@ def edit(request, diag):
         if diag == '':
             return HttpResponseRedirect(reverse(settings.SITE_ROOT + 'act.views.edit', args=(default_page,)))
         plain = bz2.decompress(base64.b64decode(diag))
-        return render_to_response('diag/edit.html', {'diag': diag, 'plain': plain, 'type': 'nw'})
+        return render_to_response('diag/edit.html', {'diag': diag, 'plain': plain, 'type': 'act'})

@@ -1,5 +1,4 @@
 import os
-import re
 import sys
 import base64
 import bz2
@@ -22,7 +21,7 @@ def show(request, diag):
     diagram = builder.ScreenNodeBuilder.build(tree)
     response = HttpResponse(mimetype='image/png')
 
-    draw = DiagramDraw.DiagramDraw('PNG', diagram, response, antialias=False)
+    draw = DiagramDraw.DiagramDraw('PNG', diagram, response, antialias=False, font=settings.FONT)
     draw.draw()
     draw.save()
 
