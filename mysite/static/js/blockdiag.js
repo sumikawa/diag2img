@@ -6,8 +6,8 @@ function genURL() {
             encode = d.encode;
 	});
 	$('img#dia').fadeOut("normal");
-	$('img#dia').attr('src', encode + '.png').fadeIn("fast");
 	history.pushState(null, "nwdiag2img", encode);
+	$('img#dia').attr('src', encode + '.png').fadeIn("fast");
 	// TODO: back button does not work
     });
     return false;
