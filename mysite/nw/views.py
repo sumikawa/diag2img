@@ -14,17 +14,16 @@ from ConfigParser import SafeConfigParser
 from nwdiag import diagparser, builder, DiagramDraw
 
 default_page = "QlpoOTFBWSZTWZtqPoAAAD9ZgEAQQABwCDavnJogAFQlTTSMaQNBmoNpKADR6gGkBefJp1hOwQrgW6hTWFQlmgUo2PqeEk6KuD6iLk9nFT6ZkZmdRQsPUwhj8XckU4UJCbaj6AA="
+type = 'nw'
 
 @cache_page(60 * 15)
 def show(request, diag):
     tree = diagparser.parse(diagparser.tokenize(bz2.decompress(base64.b64decode(diag))))
     diagram = builder.ScreenNodeBuilder.build(tree)
     response = HttpResponse(mimetype='image/png')
-
     draw = DiagramDraw.DiagramDraw('PNG', diagram, response, antialias=False, font=settings.FONT)
     draw.draw()
     draw.save()
-
     return response
 
 @csrf_exempt
@@ -35,6 +34,6 @@ def edit(request, diag):
         return HttpResponse(data, mimetype='application/json')
     elif request.method == 'GET':
         if diag == '':
-            return HttpResponseRedirect(reverse(settings.SITE_ROOT + 'nw.views.edit', args=(default_page,)))
+            return HttpResponseRedirect(reverse(settings.SITE_ROOT + type + '.views.edit', args=(default_page,)))
         plain = bz2.decompress(base64.b64decode(diag))
-        return render_to_response('diag/edit.html', {'diag': diag, 'plain': plain, 'type': 'nw'})
+        return render_to_response('diag/edit.html', {'diag': diag, 'plain': plain, 'type': type})
