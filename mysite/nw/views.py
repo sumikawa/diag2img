@@ -11,7 +11,7 @@ from django.views.decorators.cache import cache_page
 from django.utils import simplejson
 from django.views.decorators.csrf import csrf_exempt
 from ConfigParser import SafeConfigParser
-from nwdiag import diagparser, builder, DiagramDraw
+from nwdiag import diagparser, builder, DiagramDraw, __version__
 
 default_page = "QlpoOTFBWSZTWZtqPoAAAD9ZgEAQQABwCDavnJogAFQlTTSMaQNBmoNpKADR6gGkBefJp1hOwQrgW6hTWFQlmgUo2PqeEk6KuD6iLk9nFT6ZkZmdRQsPUwhj8XckU4UJCbaj6AA="
 type = 'nw'
@@ -36,4 +36,5 @@ def edit(request, diag):
         if diag == '':
             return HttpResponseRedirect(reverse(settings.SITE_ROOT + type + '.views.edit', args=(default_page,)))
         plain = bz2.decompress(base64.b64decode(diag))
-        return render_to_response('diag/edit.html', {'diag': diag, 'plain': plain, 'type': type})
+        return render_to_response('diag/edit.html',
+                                  {'diag': diag, 'plain': plain, 'type': type, 'vers': __version__})
