@@ -13,7 +13,7 @@ else:
 TEMPLATE_DEBUG = DEBUG
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-FONT = os.path.join(BASE_DIR, 'fonts', 'M+2VM+IPAG-circle.ttf')
+FONT = os.path.join(BASE_DIR, 'fonts', 'MigMix-1M-20110610', 'MigMix-1M-regular.ttf')
 
 ADMINS = (
 #    ('sumikawa', 'sumikawa@sumikawa.jp'),
