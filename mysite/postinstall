@@ -1,6 +1,8 @@
 #!/bin/bash
-if [ -f /home/dotcloud/current/fonts/MigMix-1M-20110610/MigMix-1M-regular.ttf ]
-  curl -o /tmp/font.zip 'http://jaist.dl.sourceforge.jp/mix-mplus-ipa/52282/MigMix-1M-20110610.zip'
+if [ ! -f /home/dotcloud/current/fonts/MigMix-1M-20110610/MigMix-1M-regular.ttf ]; then
+  if [ ! -f /tmp/font.zip ]; then
+    curl -o /tmp/font.zip 'http://jaist.dl.sourceforge.jp/mix-mplus-ipa/52282/MigMix-1M-20110610.zip'
+  fi
   cd /home/dotcloud/current/fonts
   unzip /tmp/font.zip MigMix-1M-20110610/MigMix-1M-regular.ttf
 fi
