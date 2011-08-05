@@ -35,6 +35,6 @@ def edit(request, diag):
     elif request.method == 'GET':
         if diag == '':
             return HttpResponseRedirect(reverse(settings.SITE_ROOT + type + '.views.edit', args=(default_page,)))
-        plain = bz2.decompress(base64.b64decode(diag).replace('-', '/'))
+        plain = bz2.decompress(base64.b64decode(diag.replace('-', '/')))
         return render_to_response('diag/edit.html',
                                   {'diag': diag, 'plain': plain, 'type': type, 'vers': __version__})
