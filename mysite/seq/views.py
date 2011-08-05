@@ -18,7 +18,7 @@ type = 'seq'
 
 @cache_page(60 * 15)
 def show(request, diag):
-    tree = diagparser.parse(diagparser.tokenize(bz2.decompress(base64.b64decode(diag))))
+    tree = diagparser.parse(diagparser.tokenize(bz2.decompress(base64.b64decode(diag.replace('-', '/')))))
     diagram = builder.ScreenNodeBuilder.build(tree)
     response = HttpResponse(mimetype='image/png')
     draw = DiagramDraw.DiagramDraw('PNG', diagram, response, antialias=False, font=settings.FONT)
@@ -29,12 +29,12 @@ def show(request, diag):
 @csrf_exempt
 def edit(request, diag):
     if request.method == 'POST':
-        encode = base64.b64encode(bz2.compress(request.POST['diagram']))
+        encode = base64.b64encode(bz2.compress(request.POST['diagram'])).replace('/', '-')
         data = simplejson.dumps([{"encode": encode},])
         return HttpResponse(data, mimetype='application/json')
     elif request.method == 'GET':
         if diag == '':
             return HttpResponseRedirect(reverse(settings.SITE_ROOT + type + '.views.edit', args=(default_page,)))
-        plain = bz2.decompress(base64.b64decode(diag))
+        plain = bz2.decompress(base64.b64decode(diag).replace('-', '/'))
         return render_to_response('diag/edit.html',
                                   {'diag': diag, 'plain': plain, 'type': type, 'vers': __version__})
