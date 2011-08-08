@@ -10,10 +10,17 @@ function genURL() {
 	// TODO: back button does not work
 	$('#message').empty().prepend('Loading Image...</br>');
 	$('img#dia')
+	    .error(function() {
+		$(this).hide();  
+		$('#message').empty().prepend('<div style="color: red; background-color: yellow; text-align: center;">Error.  The diagram seems wrong</div>');
+	    })
 	    .load(function() {
-		$('#message').empty();
+		$(this).hide();  
+		$('#image').append(this);  
+		$(this).fadeIn(); 
 	    })
 	    .attr('src', encode + '.png').fadeIn("fast");
+	$('#message').empty();
     });
     return false;
 };
