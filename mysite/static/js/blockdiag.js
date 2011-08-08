@@ -9,9 +9,11 @@ function genURL() {
 	history.pushState(null, "", encode);
 	// TODO: back button does not work
 	$('#message').empty().prepend('Loading Image...</br>');
-	$('img#dia').load(
-	    function() { $('#message').empty(); }
-	).attr('src', encode + '.png').fadeIn("fast");
+	$('img#dia')
+	    .load(function() {
+		$('#message').empty();
+	    })
+	    .attr('src', encode + '.png').fadeIn("fast");
     });
     return false;
 };
