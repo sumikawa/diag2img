@@ -48,7 +48,7 @@ Permalink of the image is <a href="/{{ type }}/{{ diag }}.png">here</a>
 <p>
 
 <span id="message"></span>
-<img id="dia" src="/{{ type }}/{{ diag }}.png" alt="diagram image" />
+<img id="dia" alt="diagram image" />
 
 </p>
 
@@ -87,6 +87,7 @@ Image URL: http://diag2img.don.to/TYPE/DIAG.png <br />
   $(function() {
     $("#jqtab").tabs();
   });
+  genURL();
 </script>
 
 </body>
