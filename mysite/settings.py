@@ -4,7 +4,7 @@ import socket
 
 if re.match('diag2img-\w+-www-\d+', socket.gethostname()):
 # dotcloud
-    DEBUG = False
+    DEBUG = True
     SITE_ROOT = ''
 else:
     DEBUG = True
