@@ -6,13 +6,16 @@ function genURL() {
             encode = d.encode;
 	});
 	$('img#dia').fadeOut("normal");
-	history.pushState(null, "nwdiag2img", encode);
-	$('img#dia').attr('src', encode + '.png').fadeIn("fast");
+	$('#message').prepend('Loading Image...');
+	history.pushState(null, "", encode);
 	// TODO: back button does not work
+	$('img#dia').attr('src', encode + '.png').load(
+	    function() { $('#message').empty(); }
+	).fadeIn("fast");
     });
     return false;
 };
 
 $(document).ready(function($) {
-    $('textarea').autoResizeTextAreaQ({"max_rows":40});
+    $('textarea').autoResizeTextAreaQ({"max_rows":20});
 });
