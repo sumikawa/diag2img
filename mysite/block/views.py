@@ -30,7 +30,7 @@ def show(request, diag):
 @csrf_exempt
 def edit(request, diag):
     if request.method == 'POST':
-        encode = base64.b64encode(bz2.compress(request.POST['diagram'])).replace('/', '-')
+        encode = base64.b64encode(bz2.compress(request.POST['diagram'].encode('utf-8'))).replace('/', '-')
         data = simplejson.dumps([{"encode": encode},])
         return HttpResponse(data, mimetype='application/json')
     elif request.method == 'GET':
