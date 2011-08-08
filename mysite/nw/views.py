@@ -18,7 +18,8 @@ type = 'nw'
 
 @cache_page(60 * 15)
 def show(request, diag):
-    tree = diagparser.parse(diagparser.tokenize(bz2.decompress(base64.b64decode(diag.replace('-', '/')))))
+    tree = diagparser.parse(diagparser.tokenize(bz2.decompress(
+                base64.b64decode(diag.replace('-', '/'))).decode('utf-8')))
     diagram = builder.ScreenNodeBuilder.build(tree)
     response = HttpResponse(mimetype='image/png')
     draw = DiagramDraw.DiagramDraw('PNG', diagram, response, antialias=False, font=settings.FONT)

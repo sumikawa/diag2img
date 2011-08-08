@@ -1,3 +1,2 @@
-- CJK support
 - Error handling with wrong diagram
 - use same page for all diag by tabs
