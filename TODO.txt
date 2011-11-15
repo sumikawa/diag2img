@@ -1,1 +1,0 @@
-- use same page for all diag by tabs
