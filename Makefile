@@ -2,7 +2,7 @@ all::
 	@exit 0
 
 push::
-	dotcloud push diag2img
+	dotcloud push --all diag2img
 
 logs::
 	dotcloud logs diag2img.www
